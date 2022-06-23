@@ -54,7 +54,7 @@
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-secondary ml-2" value="Reset">
             </div>
-            <p>Already have an account? <a href="../Vista/IniciarSesion.php">Login here</a>.</p>
+            <p>Ya tiene una cuenta? <a href="../Vista/IniciarSesion.php">Inicie Sesion Aquí.</a>.</p>
         </form>
     </div>    
 </body>

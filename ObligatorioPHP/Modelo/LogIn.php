@@ -1,93 +1,92 @@
 <?php
-// Initialize the session
-session_start();
+// El isset comprueba si una variable está definida.
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+}
  
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: welcome.php");
+// Verificamos si el usuario está logueado.
+if(isset($_SESSION["admin"]) && $_SESSION["admin"] === true){
+    header("location: ../Vista/MenuPrincipalAdmin.php");
+    exit;
+}
+else if(isset($_SESSION["usuario"]) && $_SESSION["usuario"] === true){
+    header("location: ../Vista/MenuPrincipal.php");
     exit;
 }
  
-// Include config file
 include "../Persistencia/Conexion.php";
  
-// Define variables and initialize with empty values
-$username = $password = "";
+// Definimos variables.
+$username = $password = $tipo =  "";
 $username_err = $password_err = $login_err = "";
 $param_username = $param_pass = "";
  
-// Processing form data when form is submitted
+// Procesamos el form sólo cuando apretamos el botón de registrar.
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
-    // Check if username is empty
+    // Nos fijamos si el nombre de usuario está vacío.
     if(empty(trim($_POST["username"]))){
         $username_err = "El Nombre de Usuario no puede quedar vacío.";
     } else{
         $username = trim($_POST["username"]);
     }
     
-    // Check if password is empty
+    // Nos fijamos si la contraseña está vacía.
     if(empty(trim($_POST["password"]))){
         $password_err = "Olvidaste poner tu contraseña contraseña.";
     } else{
         $password = trim($_POST["password"]);
     }
     
-    // Validate credentials
+    // Validamos las credenciales.
     if(empty($username_err) && empty($password_err)){
-        // Prepare a select statement
-        $sql = "SELECT id, nombreUsuario, pass FROM cliente WHERE nombreUsuario = ?";
-
+        $sql = "SELECT id, nombreUsuario, pass, tipo FROM cliente WHERE nombreUsuario = ?";
         $stmt = mysqli_prepare($conexion, $sql);
         if($stmt){
-            // Bind variables to the prepared statement as parameters
-            //mysqli_stmt_bind_param($stmt, "iss", $param_id, $param_username, $param_pass);
             mysqli_stmt_bind_param($stmt, "s", $param_username);
-
-            // Set parameters
             $param_username = $username;
-            
-            // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Store result
                 mysqli_stmt_store_result($stmt);
-                
-                // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                   
-                    // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $tipo);
                     if(mysqli_stmt_fetch($stmt)){
                         if($password == $hashed_password){
-                            echo "Aca llegamos.";
-                            // Password is correct, so start a new session
+                            // Si la contraseña es correcta configurar una sesion
                             session_start();
-                            
-                            // Store data in session variables
-                            $_SESSION["loggedin"] = true;
+                            if($tipo == "admin"){
+                                $_SESSION["admin"] = true;
+                            }
+                            else if($tipo == "local"){
+                                $_SESSION["local"] = true;
+                            }
+                            else{
+                                echo "Vos quién sos!?";
+                                return -1;
+                            }
+                            // almacenar datos en las variables de sesion.
                             $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;                            
+                            $_SESSION["username"] = $username;                       
                             
-                            // Redirect user to welcome page
-                            header("location: welcome.php");
-                        } else{
-                            // Password is not valid, display a generic error message
-                            $login_err = "Invalid username or password.";
+                            // Redireccionar al menu principal.
+                            header("location: ../Vista/MenuPrincipal.php");
+                        } 
+                        else{
+                            // Contraseña inválida.
+                            $login_err = "Nombre de usuario o contraseña incorrectos.";
                         }
                     }
                 } 
                 else{
-                    // Username doesn't exist, display a generic error message
-                    $login_err = "Invalid username or password.";
+                    // Nombre de usuario inválido.
+                    $login_err = "Nombre de usuario o contraseña incorrectos.";
                 }
             } 
             else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo "Emmm... algo no salió bien, mejor intentalo luego.";
             }
-
-            // Close statement
             mysqli_stmt_close($stmt);
         }
-         // Close connection
         mysqli_close($conexion);
     }
 }
