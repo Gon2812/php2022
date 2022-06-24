@@ -64,10 +64,21 @@
     );";
     $resultado = mysqli_query($conexion, $sql);
 
-    $sql = "INSERT INTO cliente(id, nombre, tipo, correo, nombreUsuario, pass) 
+    $sql = "CREATE TABLE IF NOT EXISTS carrito(
+        id_sesion VARCHAR(255) NOT NULL,
+        cantidad BIGINT UNSIGNED NOT NULL,
+        id_producto BIGINT UNSIGNED NOT NULL,
+        precio BIGINT UNSIGNED NOT NULL,
+        nombreProducto VARCHAR(255) NOT NULL,
+        FOREIGN KEY (id_producto) REFERENCES mercaderia(id)
+        ON UPDATE CASCADE ON DELETE CASCADE
+    );";
+    $resultado = mysqli_query($conexion, $sql);
+
+   /* $sql = "INSERT INTO cliente(id, nombre, tipo, correo, nombreUsuario, pass) 
     VALUES('1', 'Gon', 'admin', 'gc28@gmail.com', 'GC28', '123456');
     ";
-    $resultado = mysqli_query($conexion, $sql);
+    $resultado = mysqli_query($conexion, $sql);*/
     
     if($resultado){
         echo "<script>alert('Se han registrado las tablas con éxito'); window.location='/ObligatorioPHP/index.php'</script>";
