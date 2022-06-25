@@ -1,4 +1,5 @@
 <?php
+
 include ("../Persistencia/Conexion.php");
 $mercaderia = "SELECT * FROM mercaderia";
 ?>
@@ -16,29 +17,45 @@ $mercaderia = "SELECT * FROM mercaderia";
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-<form action="../Vista/AgregarACarrito2.php" method="post" enctype="multipart/form-data">
-    <div class="container-table">
-        <div class="table__title">Productos</div>
-        <div class="table__header">Producto</div>
-        <div class="table__header">Precio</div>
-        <div class="table__header">Stock</div>
-        <div class="table__header">Operación</div>
+
+<table class="table">
+<thead>
+    <div class="table__title">Productos</div>
+    <tr>
+        <th scope="col">Producto</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Operación</th>
+    </tr>
+    </thead>
+    <tbody>
         <?php $resultado = mysqli_query($conexion, $mercaderia);
         while($row=mysqli_fetch_assoc($resultado)){ ?>
-            
-            <div class="table__item"><?php echo $row["nombre"];?> </div>
-            <div class="table__item"><?php echo $row["precio"];?></div>
-            <div class="table__item"><?php echo $row["stock"];?></div>
-            <div class="table__item">
-            
-            <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
-            <input type="hidden" name="nombre" value="<?php echo $row["nombre"]; ?>">
-            <input type="hidden" name="precio" value="<?php echo $row["precio"]; ?>">
+            <tr>
+                <td><?php echo $row["nombre"];?> </td>
+                <td><?php echo $row["precio"];?></td>
+                <td><?php echo $row["stock"];?></td>
+                <td>
+                    <form action="../Vista/AgregarACarrito2.php" method="post" enctype="multipart/form-data">                   
+                        <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+                        <input type="hidden" name="nombre" value="<?php echo $row["nombre"]; ?>">
+                        <input type="hidden" name="precio" value="<?php echo $row["precio"]; ?>">
 
-            <input type="submit" class="btn btn-primary" value="Agregar a carrito">
-            </div>
+                        <input type="submit" class="btn btn-primary" value="Agregar a carrito">
+                    </form>
+                </td>
+                <td>
+                    <form action="../Vista/Comentar.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="<?php echo $row["id"]; ?>">
+                        <input type="text" name="comentario" value=''>
+                        <button>Comentar</button>
+                    </form>
+                </td>
+            </tr>
         <?php } mysqli_free_result($resultado)?>
-    </div>
+    </tbody>
+</table>
+
 </body>
 </html>
 
