@@ -48,8 +48,10 @@
         fecha date NOT NULL,
         idCliente bigint unsigned NOT NULL,
         idPago bigint unsigned NOT NULL,
-        FOREIGN KEY (idCliente) REFERENCES cliente(id),
-        FOREIGN KEY (idPago) REFERENCES pago(id)
+        idMercaderia bigint unsigned NOT NULL,
+        FOREIGN KEY (idCliente) REFERENCES cliente(id) ON DELETE CASCADE,
+        FOREIGN KEY (idPago) REFERENCES pago(id) ON DELETE CASCADE,
+        FOREIGN KEY (idMercaderia) REFERENCES mercaderia(id) ON DELETE CASCADE
     );";
     $resultado = mysqli_query($conexion, $sql);
 
