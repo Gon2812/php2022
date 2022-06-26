@@ -67,11 +67,12 @@
     $resultado = mysqli_query($conexion, $sql);
 
     $sql = "CREATE TABLE IF NOT EXISTS carrito(
-        id_sesion VARCHAR(255) NOT NULL,
+        id_cliente VARCHAR(255) NOT NULL,
         cantidad BIGINT UNSIGNED NOT NULL,
         id_producto BIGINT UNSIGNED NOT NULL,
         precio BIGINT UNSIGNED NOT NULL,
         nombreProducto VARCHAR(255) NOT NULL,
+        total BIGINT UNSIGNED NOT NULL,
         FOREIGN KEY (id_producto) REFERENCES mercaderia(id)
         ON UPDATE CASCADE ON DELETE CASCADE
     );";

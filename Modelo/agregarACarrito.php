@@ -34,7 +34,7 @@ function test_input($data) {
         $resultado = mysqli_query($conexion, $insertar);
 
         if($resultado){
-            echo "<script>alert('Se ha agregado al carrito con éxito'); window.location='/ObligatorioPHP/Vista/Catalogo.php'</script>";
+            echo "<script>alert('Se ha agregado al carrito con éxito'); window.location='../Vista/Catalogo.php'</script>";
         }
         else{
             echo"<script>alert('No se pudo agregar al carrito');window,history.go(-1);</script>";
