@@ -30,7 +30,7 @@ $mercaderia = "SELECT * FROM mercaderia";
             <div class="table__item"><?php echo $row["stock"];?></div>
             <div class="table__item">
                 <a href="./VerComentarios.php?id=<?php echo $row["id"];?>" class="table__item__link">Comentarios</a> |
-                <a href="..Modelo/ModificarProducto.php?id=<?php echo $row["id"];?>" class="table__item__link">Editar</a> |
+                <a href="./ModificarProducto.php?id=<?php echo $row["id"];?>" class="table__item__link">Editar</a> |
                 <a href="../Modelo/EliminarProducto.php?id=<?php echo $row["id"];?>" class="table__item__link">Eliminar</a>
             </div>
         <?php } mysqli_free_result($resultado)?>
