@@ -9,8 +9,8 @@ parse_str($url_components['query'], $params);
       
 // id del producto en cuestion
 $id = $params['id'];
-$reseñasCompras = "SELECT * FROM feedbackcompra WHERE id = $id";
-$comentariosProductos = "SELECT * FROM feedbackproducto WHERE id = $id";
+$reseñasCompras = "SELECT * FROM feedbackcompra WHERE idMercaderia = $id";
+$comentariosProductos = "SELECT * FROM feedbackproducto WHERE idMercaderia = $id";
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +41,7 @@ $comentariosProductos = "SELECT * FROM feedbackproducto WHERE id = $id";
 
 
         <?php $resultado = mysqli_query($conexion, $reseñasCompras);
+
         while($row=mysqli_fetch_assoc($resultado)){ ?>
             <tr>
                 <th><?php echo $row["id"];?></th>
@@ -69,12 +70,12 @@ $comentariosProductos = "SELECT * FROM feedbackproducto WHERE id = $id";
         <tbody>
 
         <?php $resultado2 = mysqli_query($conexion, $comentariosProductos);
-        while($row=mysqli_fetch_assoc($resultado2)){ ?>
+        while($row2=mysqli_fetch_assoc($resultado2)){ ?>
             <tr>
-                <th><?php echo $row["id"];?></th>
-                <th><?php echo $row["comentario"];?></th>
-                <th><?php echo $row["fecha"];?></th>
-                <th><?php echo $row["idCliente"];?></th>
+                <th><?php echo $row2["id"];?></th>
+                <th><?php echo $row2["comentario"];?></th>
+                <th><?php echo $row2["fecha"];?></th>
+                <th><?php echo $row2["idCliente"];?></th>
             </tr>
         <?php } mysqli_free_result($resultado2)?>
         </tbody>

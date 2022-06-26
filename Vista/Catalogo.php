@@ -1,4 +1,5 @@
 <?php
+
 include ("../Persistencia/Conexion.php");
 $mercaderia = "SELECT * FROM mercaderia";
 ?>
