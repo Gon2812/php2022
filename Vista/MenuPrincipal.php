@@ -20,15 +20,24 @@ if(!isset($_SESSION["local"]) || $_SESSION["local"] !== true){
     </style>
 </head>
 <body>
-<nav class="navbar bg-light">
+    <nav class="navbar bg-light">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">Bienvenido <?php echo htmlspecialchars($_SESSION["username"]); ?></span>
-            <a href="../Modelo/LogOut.php" class="btn btn-dark ml-3" >Salir de la sesión</a>
+            
+            <a href="../Modelo/LogOut.php" class="btn btn-dark ml-3 " >Salir de la sesión</a>
+           
         </div>
     </nav>
     <div class="dropdown">
         <a href="./Catalogo.php">Ver Catalogo</a>
     </div>
+    <div>
+        <a href="./VerCarrito.php">Ver Carrito</a>
+    </div>
+        
+  
+
+
     <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Bienvenido a este sitio para gente común.;)</h1>
 
 </body>

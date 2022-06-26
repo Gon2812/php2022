@@ -2,16 +2,6 @@
 include "../Persistencia/Conexion.php";
 
 $idSesion = session_id();
-   // $insertar = "INSERT INTO carrito(id_sesion, id_producto) VALUES (?, ?)";
-    //$resultado = mysqli_query($conexion, $insertar);
-    
-
-  /*  if($_SERVER["REQUEST_METHOD"] == "POST"){
-        // Comprobar si llegaron los campos requeridos:
-        if( isset($_POST['productName']) && isset($_POST['price']))
-    
-    
-    }*/
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +47,7 @@ $idSesion = session_id();
             <div class="form-group">
             <input type="hidden" readonly name="id" class="form-control" value="<?php echo($_POST['id'] ) ?>">
             </div>
-
+        
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Agregar">
             </div>

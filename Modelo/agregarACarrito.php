@@ -1,6 +1,7 @@
 
 <?php
 include "../Persistencia/Conexion.php";
+session_start();
 
 $id = $productName = $price = $cantidad = "";
 $target_path = "";
@@ -14,8 +15,7 @@ function test_input($data) {
 }
 
 
-$idSesion = session_id();
-echo $idSesion;
+
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Comprobar si llegaron los campos requeridos:
@@ -25,9 +25,11 @@ echo $idSesion;
         $id = $_POST["id"];
         $price = $_POST["price"];
         $cantidad = test_input($_POST["cantidad"]);
+        $total = $price*$cantidad;
+        $idSesion =$_SESSION['id'];
 
-        $insertar = "INSERT INTO carrito(id_sesion, cantidad, id_producto, precio, nombreProducto)
-        VALUES('$idSesion', '$cantidad', '$id', '$price', '$productName')";
+        $insertar = "INSERT INTO carrito(id_cliente, cantidad, id_producto, precio, nombreProducto,total)
+        VALUES('$idSesion', '$cantidad', '$id', '$price', '$productName','$total')";
 
         $resultado = mysqli_query($conexion, $insertar);
 
