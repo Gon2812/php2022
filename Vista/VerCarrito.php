@@ -27,19 +27,24 @@ $carrito = "SELECT * FROM carrito WHERE id_cliente = '$idSesion' ";
         <div class="table__header">Precio</div>
         
         <?php $resultado = mysqli_query($conexion, $carrito);
-
+          $total = 0;
         while($fila=mysqli_fetch_assoc($resultado)){ ?>
             
             <div class="table__item"><?php echo $fila["nombreProducto"];?> </div>
             <div class="table__item"><?php echo $fila["cantidad"];?></div>
             <div class="table__item">$ <?php echo $fila["precio"];?></div>
-            <div class="table__footer">Total $ <?php echo $fila["total"];?></div>
-    </div>
+            <?php
+                $total = $total + $fila['total'];
 
+            }?>
+            <div class="table__footer">Total $ <?php echo $total;?></div>
+            
+           
+            <?php mysqli_free_result($resultado)?>
+    </div>
     <div col-auto class="row justify-content-center"> 
             <a href="../Vista/MetodosPago.php" class="btn btn-primary ml-3 " >Finalizar Compra</a>
     </div>
-    <?php } mysqli_free_result($resultado) ?>
 </body>
 </html>
 
