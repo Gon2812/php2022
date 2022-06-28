@@ -10,6 +10,7 @@ if(!isset($_SESSION["local"]) || $_SESSION["local"] !== true){
 }
 $idSesion = $_SESSION['id'];
 $reseñasComprasUsuario = "SELECT * FROM feedbackcompra WHERE idCliente = $idSesion";
+$compras = "SELECT * FROM pago WHERE idCliente = $idSesion";
 $comentariosProductosUsuario = "SELECT * FROM feedbackproducto WHERE idCliente = $idSesion";
 ?>
 
@@ -17,7 +18,7 @@ $comentariosProductosUsuario = "SELECT * FROM feedbackproducto WHERE idCliente =
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ver Comentarios</title>
+    <title>Mis Compras</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; }
@@ -32,6 +33,7 @@ $comentariosProductosUsuario = "SELECT * FROM feedbackproducto WHERE idCliente =
                 <th scope="col">Compra</th>
                 <th scope="col">Comentario</th>
                 <th scope="col">Fecha</th>
+                <th scope="col">Total</th>
             </tr>
         </thead>
             <div class="table__title">Mi Historial de compras</div>
@@ -41,11 +43,12 @@ $comentariosProductosUsuario = "SELECT * FROM feedbackproducto WHERE idCliente =
         <?php $resultado = mysqli_query($conexion, $reseñasComprasUsuario);
 
         while($row=mysqli_fetch_assoc($resultado)){ ?>
-            
+            <?php $idPago = (int)$row["idPago"];?>
             <tr>
                 <th><?php echo $row["idPago"];?></th>
                 <th><?php echo $row["comentario"];?></th>
                 <th><?php echo $row["fecha"];?></th>
+                <th>$ <?php echo mysqli_fetch_assoc(mysqli_query($conexion, "SELECT * FROM pago WHERE id = $idPago"))["total"]?></th>
             </tr>
         <?php } mysqli_free_result($resultado)?>
 

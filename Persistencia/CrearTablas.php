@@ -36,6 +36,7 @@
     $sql = "CREATE TABLE IF NOT EXISTS pago (  
         id bigint unsigned NOT NULL PRIMARY KEY,
         idCliente bigint unsigned NOT NULL,
+        total BIGINT UNSIGNED NOT NULL,
         FOREIGN KEY (idCliente) REFERENCES cliente(id) ON DELETE CASCADE
     );";
     $resultado = mysqli_query($conexion, $sql);

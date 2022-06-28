@@ -15,11 +15,12 @@ while($c=mysqli_fetch_assoc($carrito)){
 
     $cambiarStock = "UPDATE mercaderia SET stock = $nuevoStockProducto WHERE id=$idProductoEliminar";
     $resultadoCambioStock = mysqli_query($conexion, $cambiarStock);
-
+    $total = 0;
     while($i=mysqli_fetch_assoc($idMayor)){
         $id = $i["idpago"]+1;
         $cantidad = $c["cantidad"];
-        $pago="INSERT INTO pago(id, idCliente) VALUES('$id','$idSesion')";
+        $total = $total + $c['total'];
+        $pago="INSERT INTO pago(id, idCliente, total) VALUES('$id','$idSesion', '$total')";
         $resultadoInsertPago = mysqli_query($conexion, $pago);
     }
     $pagoMercaderia="INSERT INTO pagomercaderia(id, idPago, idMercaderia, cantidad) VALUES('$idVacio','$id','$idProductoEliminar', '$cantidad')";
