@@ -32,7 +32,7 @@ if(!isset($_SESSION["local"]) || $_SESSION["local"] !== true){
     <div class="container mt-5">
         <div class="row">
             <div class="col-6">
-                <a href="../Modelo/LogOut.php" class="btn btn-lg btn-dark">Historial de compras</a>
+                <a href="./MiHistorialDeCompras.php" class="btn btn-lg btn-dark">Historial de compras</a>
             </div>
             <div class="col-6">
                 <a href="./MisComentarios.php" class="btn btn-lg btn-dark">Mis comentarios</a>
