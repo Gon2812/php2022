@@ -31,7 +31,7 @@ if(!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true){
         <a href="./AdministrarProducto.php">Administrar Productos</a>
     </div>
     <div>
-        <a href="./AdministrarProducto.php">Administrar Usuarios</a>
+        <a href="./AdministrarUsuario.php">Administrar Usuarios</a>
     </div>
     <div>
         <a href="./VerCompras.php">Ver Compras</a>
