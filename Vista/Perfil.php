@@ -27,19 +27,7 @@ if(!isset($_SESSION["local"]) || $_SESSION["local"] !== true){
             <a href="../Modelo/LogOut.php" class="btn btn-dark ml-3 " >Salir de la sesión</a>
            
         </div>
-    </nav>
-    <table class="table">
-        <tbody>
-            <tr>
-                <th><a href="../Vista/MiHistorialDecompras.php" class="btn btn-dark ml-3 ">Historial de compras</a></th>
-            </tr>
-            <tr>
-                <th><a href="./MisComentarios.php" class="btn btn-dark ml-3 ">Mis comentarios</a></th>
-            </tr>
-        </tbody>
-    </table>
-        
-  
+    </nav>        
 
     <div class="container mt-5">
         <div class="row">
