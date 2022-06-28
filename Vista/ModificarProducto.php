@@ -72,6 +72,7 @@ $imagen = "SELECT * FROM imgmercaderia WHERE idMercaderia = $id";
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Enviar">
                     <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                    <input type="button" value="Volver" class="btn btn-secondary ml-2" onClick="history.go(-1);">
                 </div>
                 
             <?php } mysqli_free_result($resultado)?>

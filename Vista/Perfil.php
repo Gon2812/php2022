@@ -41,6 +41,6 @@ if(!isset($_SESSION["local"]) || $_SESSION["local"] !== true){
     </div>
 
     <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Bienvenido a este sitio para gente común.;)</h1>
-
+    <input type="button" value="Volver" class="btn btn-secondary ml-2" onClick="history.go(-1);">
 </body>
 </html>

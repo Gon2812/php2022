@@ -43,6 +43,6 @@ $compras = "SELECT * FROM pago";
 
         </tbody>
     </table>
-
+    <input type="button" value="Volver" class="btn btn-secondary ml-2" onClick="history.go(-1);">
 </body>
 </html>

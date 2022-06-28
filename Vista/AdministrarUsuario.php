@@ -47,5 +47,6 @@ $usuario = "SELECT * FROM cliente";
         <?php 
     } mysqli_free_result($resultado)?>
     </div>
+    <input type="button" value="Volver" class="btn btn-secondary ml-2" onClick="history.go(-1);">
 </body>
 </html>
