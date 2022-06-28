@@ -13,7 +13,7 @@
     $aMensajes = array();
 
     // Patrón para usar en expresiones regulares (admite letras acentuadas y espacios):
-    $patron_texto = "/^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙ\s]+$/";
+    $patron_texto = "/^[.,!?a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙ\s]+$/";
 
     // Comprobar si llegaron los campos requeridos:
     if(isset($_POST['comentario']) && isset($_POST['id']))
@@ -24,13 +24,13 @@
             $aErrores[] = "Debe especificar un comentario.";
         else
         {
-            // Comprobar que sólo contie letras y espacios:
+            // Comprobar que sólo contiene letras y espacios:
             if( preg_match($patron_texto, $_POST['comentario']) ){
                 $aMensajes[] = "Comentario: [".$_POST['comentario']."]";
                 $comentario = test_input($_POST["comentario"]);
             }
             else
-                $aErrores[] = "El comentario sólo puede contener letras y espacios.";
+                $aErrores[] = "No pongas signos raros en los comentarios...";
         }
 
         // ID:
@@ -61,7 +61,8 @@
 
         // Mostrar los errores:
         for( $contador=0; $contador < count($aErrores); $contador++ )
-            echo $aErrores[$contador]."<br/>";
+            $Errores = $aErrores[$contador] ;
+            echo"<script>alert('$Errores');window,history.go(-1);</script>";
     }
     else
     {
@@ -90,6 +91,4 @@
         }
         mysqli_close($link);
     }
-
-    echo "<p><a href='index.php'>Haz clic aquí para volver</a></p>";
 ?>
