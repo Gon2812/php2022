@@ -22,14 +22,16 @@ $aMensajes = array();
 $patron_producto = "/^[0-9a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙ\s]+$/";
 $patron_numeral = "/^[0-9]+$/";
 
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Comprobar si llegaron los campos requeridos:
     if(isset($_POST['productId']) && isset($_POST['productName']) && isset($_POST['price']) && isset($_POST['stock']))
     {
-        $idMercaderia = isset($_POST['productId']);
+        $idMercaderia = ($_POST['productId']);
         // Nombre del Producto:
-        if( empty($_POST['productName']) )
+        if( empty($_POST['productName']) ){
             $productName_err = "Debe especificar el nombre del producto.";
+        }
         else
         {
             // Comprobar mediante una expresión regular, que no contenga caracteres raros:
@@ -64,8 +66,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // Imagen:
         //Como el elemento es un arreglos utilizamos foreach para extraer todos los valores
-        if (!empty($_FILES['image']) && isset($_FILES['image'])){
+        if (!empty($_POST['image']) && isset($_FILES['image'])){
             $cantidad= count($_FILES["image"]["tmp_name"]);
+            echo "La cantidad es $cantidad";
             for ($i=0; $i<$cantidad; $i++){
                 //Comprobamos si el fichero es una imagen
                 if (!$_FILES['image']['type'][$i]=='image/png' || !$_FILES['image']['type'][$i]=='image/jpeg'){
@@ -83,12 +86,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $aErrores = array($productName_err, $price_err, $stock_err, $image_err);
     // Si han habido errores se muestran, sino se mostrán los mensajes
-    $aErrores = array_unique($aErrores );
+    $aErrores = array_unique($aErrores);
     echo count($aErrores);
     if( count($aErrores) == 1 )
     {
         $insertar = "UPDATE mercaderia SET nombre='$productName', precio='$price', stock='$stock' WHERE id='$idMercaderia'";
-
+        echo "Llegue aca?";
         $resultado = mysqli_query($conexion, $insertar);
 
         $dato = "SELECT id FROM mercaderia WHERE nombre = '$productName'";
@@ -129,7 +132,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         
         mysqli_close($conexion);
-        if($resultado && $resultadoImg){
+        if($resultado){
             echo "<script>alert('Se ha registrado la mercadería con éxito'); window.location='/ObligatorioPHP/Vista/MenuPrincipalAdmin.php'</script>";
         }
         else{
