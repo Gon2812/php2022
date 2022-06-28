@@ -18,7 +18,7 @@ else if(isset($_SESSION["usuario"]) && $_SESSION["usuario"] === true){
 include "../Persistencia/Conexion.php";
  
 // Definimos variables.
-$username = $password = $tipo =  "";
+$username = $password = $tipo = $habilitado =  "";
 $username_err = $password_err = $login_err = "";
 $param_username = $param_pass = "";
  
@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Validamos las credenciales.
     if(empty($username_err) && empty($password_err)){
-        $sql = "SELECT id, nombreUsuario, pass, tipo FROM cliente WHERE nombreUsuario = ?";
+        $sql = "SELECT id, nombreUsuario, pass, tipo, habilitado FROM cliente WHERE nombreUsuario = ?";
         $stmt = mysqli_prepare($conexion, $sql);
         if($stmt){
             mysqli_stmt_bind_param($stmt, "s", $param_username);
@@ -49,27 +49,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if(mysqli_stmt_execute($stmt)){
                 mysqli_stmt_store_result($stmt);
                 if(mysqli_stmt_num_rows($stmt) == 1){                   
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $tipo);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $tipo, $habilitado);
                     if(mysqli_stmt_fetch($stmt)){
                         if($password == $hashed_password){
-                            // Si la contraseña es correcta configurar una sesion
-                            session_start();
-                            if($tipo == "admin"){
-                                $_SESSION["admin"] = true;
-                            }
-                            else if($tipo == "local"){
-                                $_SESSION["local"] = true;
+                            if($habilitado == 1){
+                                // Si la contraseña es correcta configurar una sesion
+                                session_start();
+                                if($tipo == "admin"){
+                                    $_SESSION["admin"] = true;
+                                }
+                                else if($tipo == "local"){
+                                    $_SESSION["local"] = true;
+                                }
+                                else{
+                                    echo "Vos quién sos!?";
+                                    return -1;
+                                }
+                                // almacenar datos en las variables de sesion.
+                                $_SESSION["id"] = $id;
+                                $_SESSION["username"] = $username;                       
+                                
+                                // Redireccionar al menu principal.
+                                header("location: ../Vista/MenuPrincipal.php");
                             }
                             else{
-                                echo "Vos quién sos!?";
-                                return -1;
+                                $login_err = "Usuario no habilitado, contacte con un administrador.";
                             }
-                            // almacenar datos en las variables de sesion.
-                            $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;                       
-                            
-                            // Redireccionar al menu principal.
-                            header("location: ../Vista/MenuPrincipal.php");
                         } 
                         else{
                             // Contraseña inválida.
