@@ -29,17 +29,19 @@ if(!isset($_SESSION["local"]) || $_SESSION["local"] !== true){
            
         </div>
     </nav>
-    <div class="dropdown">
-        <a href="./Catalogo.php">Ver Catalogo</a>
-    </div>
-    <div>
-        <a href="./VerCarrito.php">Ver Carrito</a>
-    </div>
-        
-  
-
 
     <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Bienvenido a este sitio para gente común.;)</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <a href="./Catalogo.php" class="btn btn-lg btn-dark">Ver Catalogo</a>
+            </div>
+            <div class="col-6">
+                <a href="./VerCarrito.php" class="btn btn-lg btn-dark">Ver Carrito</a>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

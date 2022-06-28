@@ -10,7 +10,7 @@
     </style>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="container mx-auto mt-5">
         <h2>Agregar un Producto</h2>
         <?php
             // Verificamos si el usuario está logueado.
@@ -22,7 +22,7 @@
             //include "../Modelo/AgregarProducto.php"
         ?>
         <form action="../Modelo/AgregarProducto.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="productId" class="form-control" value="">
+            <input type="hidden" name="productId" class="form-control" value="">
             <div class="form-group">
                 <label>Nombre del Producto</label>
                 <input type="text" name="productName" class="form-control <?php echo (!empty($productName_err)) ? 'is-invalid' : ''; ?>" value="">

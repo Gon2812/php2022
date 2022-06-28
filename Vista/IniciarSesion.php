@@ -10,7 +10,7 @@
     </style>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="container mx-auto mt-5">
         <h2>IniciarSesion</h2>
         <p>Escriba sus datos para iniciar sesion.</p>
 

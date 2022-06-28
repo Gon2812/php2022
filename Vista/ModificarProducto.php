@@ -25,7 +25,7 @@ $imagen = "SELECT * FROM imgmercaderia WHERE idMercaderia = $id";
     </style>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="container mx-auto mt-5">
         <h2>Modificar Producto</h2>
         <?php
             // Verificamos si el usuario está logueado.

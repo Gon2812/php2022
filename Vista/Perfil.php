@@ -28,19 +28,17 @@ if(!isset($_SESSION["local"]) || $_SESSION["local"] !== true){
            
         </div>
     </nav>
-    <table class="table">
-        <tbody>
-            <tr>
-                <th><a href="../Modelo/LogOut.php" class="btn btn-dark ml-3 ">Historial de compras</a></th>
-            </tr>
-            <tr>
-                <th><a href="./MisComentarios.php" class="btn btn-dark ml-3 ">Mis comentarios</a></th>
-            </tr>
-        </tbody>
-    </table>
-        
-  
 
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+                <a href="../Modelo/LogOut.php" class="btn btn-lg btn-dark">Historial de compras</a>
+            </div>
+            <div class="col-6">
+                <a href="./MisComentarios.php" class="btn btn-lg btn-dark">Mis comentarios</a>
+            </div>
+        </div>
+    </div>
 
     <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Bienvenido a este sitio para gente común.;)</h1>
 

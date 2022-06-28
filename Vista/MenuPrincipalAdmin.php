@@ -27,13 +27,17 @@ if(!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true){
         </div>
     </nav>
 
-    <div class="dropdown">
-        <a href="./AgregarProducto.php">Agregar Producto</a>
-    </div>
-    <div>
-        <a href="./AdministrarProducto.php">Administrar Productos</a>
-    </div>
     <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Bienvenido a este sitio para administradores.</h1>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <a href="./AgregarProducto.php" class="btn btn-lg btn-dark">Agregar Producto</a>
+            </div>
+            <div class="col-6">
+                <a href="./AdministrarProducto.php" class="btn btn-lg btn-dark">Administrar Productos</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
