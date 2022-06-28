@@ -34,15 +34,22 @@ $mercaderia = "SELECT * FROM mercaderia";
             <div class="table__item"><?php echo $fila["stock"];?></div>
             
 
-            <form action="../Vista/AgregarACarrito2.php" method="post" enctype="multipart/form-data">
             <div class="table__item">
+            <form action="../Vista/AgregarACarrito2.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $fila["id"]; ?>">
                 <input type="hidden" name="nombre" value="<?php echo $fila["nombre"]; ?>">
                 <input type="hidden" name="precio" value="<?php echo $fila["precio"]; ?>">
 
                 <input type="submit" class="btn btn-primary" value="Agregar a carrito">
-            </div>
             </form>
+                <div>
+                    <form action="../Vista/Comentar.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" value="<?php echo $fila["id"]; ?>">
+                        <input type="text" name="comentario">
+                        <input type="submit" value="Comentar">
+                    </form>
+                </div>
+            </div>
             <?php $contador = $contador + 1; } ?>
     
     </div>
