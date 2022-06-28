@@ -11,6 +11,7 @@
         nombre varchar (50) DEFAULT NULL,
         tipo varchar (50) DEFAULT NULL,
         correo varchar (50) DEFAULT NULL,
+        habilitado BOOLEAN,
         nombreUsuario varchar(20) DEFAULT NULL UNIQUE,
         pass varchar(20) DEFAULT NULL
     );";
@@ -84,8 +85,8 @@
     );";
     $resultado = mysqli_query($conexion, $sql);
 
-    $sql = "INSERT INTO cliente(id, nombre, tipo, correo, nombreUsuario, pass) 
-    VALUES('1', 'Gon', 'admin', 'gc28@gmail.com', 'GC28', '123456');
+    $sql = "INSERT INTO cliente(id, nombre, tipo, correo, habilitado, nombreUsuario, pass) 
+    VALUES('1', 'Gon', 'admin', 'gc28@gmail.com', true, 'GC28', '123456');
     ";
     $resultado = mysqli_query($conexion, $sql);
     
