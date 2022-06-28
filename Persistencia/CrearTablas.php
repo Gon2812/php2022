@@ -1,10 +1,10 @@
 <?php
     include ("Conexion.php");
 
-    /*$sql = "
-        DROP TABLE IF EXISTS feedbackproducto, feedbackCompra, pago, imgMercaderia, cliente, mercaderia;
+    $sql = "
+        DROP TABLE IF EXISTS carrito, feedbackproducto, feedbackCompra, pagoMercaderia, pago, imgMercaderia, cliente, mercaderia;
     ";
-    $resultado = mysqli_query($conexion, $sql);*/
+    $resultado = mysqli_query($conexion, $sql);
 
     $sql = "CREATE TABLE IF NOT EXISTS cliente (
         id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -28,14 +28,14 @@
         id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
         nombre varchar (50) DEFAULT NULL,
         idMercaderia  bigint unsigned NOT NULL,
-        FOREIGN KEY (idMercaderia) REFERENCES mercaderia(id)
+        FOREIGN KEY (idMercaderia) REFERENCES mercaderia(id) ON DELETE CASCADE
     );";
     $resultado = mysqli_query($conexion, $sql);
         
     $sql = "CREATE TABLE IF NOT EXISTS pago (  
         id bigint unsigned NOT NULL PRIMARY KEY,
         idCliente bigint unsigned NOT NULL,
-        FOREIGN KEY (idCliente) REFERENCES cliente(id)
+        FOREIGN KEY (idCliente) REFERENCES cliente(id) ON DELETE CASCADE
     );";
     $resultado = mysqli_query($conexion, $sql);
 
@@ -44,8 +44,8 @@
         idPago bigint unsigned NOT NULL,
         idMercaderia bigint unsigned NOT NULL,
         cantidad int unsigned NOT NULL,
-        FOREIGN KEY (idMercaderia) REFERENCES mercaderia(id),
-        FOREIGN KEY (idPago) REFERENCES pago(id)
+        FOREIGN KEY (idMercaderia) REFERENCES mercaderia(id) ON DELETE CASCADE,
+        FOREIGN KEY (idPago) REFERENCES pago(id) ON DELETE CASCADE
 
     );";
     $resultado = mysqli_query($conexion, $sql);
@@ -84,10 +84,10 @@
     );";
     $resultado = mysqli_query($conexion, $sql);
 
-   /* $sql = "INSERT INTO cliente(id, nombre, tipo, correo, nombreUsuario, pass) 
+    $sql = "INSERT INTO cliente(id, nombre, tipo, correo, nombreUsuario, pass) 
     VALUES('1', 'Gon', 'admin', 'gc28@gmail.com', 'GC28', '123456');
     ";
-    $resultado = mysqli_query($conexion, $sql);*/
+    $resultado = mysqli_query($conexion, $sql);
     
     if($resultado){
         echo "<script>alert('Se han registrado las tablas con éxito'); window.location='/ObligatorioPHP/index.php'</script>";
