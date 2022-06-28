@@ -4,6 +4,8 @@ include "../Persistencia/Conexion.php";
 $idSesion =$_SESSION['id'];
 
 $carrito = mysqli_query($conexion, "SELECT * FROM carrito WHERE id_cliente='$idSesion'");
+$idMayor =  mysqli_query($conexion,"SELECT Max(id) As idpago FROM pago");
+$idVacio = "";
 
 while($c=mysqli_fetch_assoc($carrito)){
     $idProductoEliminar = $c["id_producto"];
@@ -13,14 +15,26 @@ while($c=mysqli_fetch_assoc($carrito)){
 
     $cambiarStock = "UPDATE mercaderia SET stock = $nuevoStockProducto WHERE id=$idProductoEliminar";
     $resultadoCambioStock = mysqli_query($conexion, $cambiarStock);
+
+    while($i=mysqli_fetch_assoc($idMayor)){
+        $id = $i["idpago"]+1;
+        $cantidad = $c["cantidad"];
+        $pago="INSERT INTO pago(id, idCliente) VALUES('$id','$idSesion')";
+        $resultadoInsertPago = mysqli_query($conexion, $pago);
+    }
+    $pagoMercaderia="INSERT INTO pagomercaderia(id, idPago, idMercaderia, cantidad) VALUES('$idVacio','$id','$idProductoEliminar', '$cantidad')";
+    $resultadoInsertPagoMercaderia = mysqli_query($conexion, $pagoMercaderia);
+    
 }mysqli_free_result($carrito);
+
+
 
 $borrar = "Delete from carrito where id_cliente='$idSesion'";
 
 $resultado = mysqli_query($conexion, $borrar);
 
 if($resultadoCambioStock && $resultado){
-    echo "<script>alert('Se ha relizado la compra con éxito'); window.location='../Vista/Catalogo.php'</script>";
+    echo "<script>alert('Se ha relizado la compra con éxito'); window.location='../Vista/FeedbackCompra.php?idPago=$id'</script>";
 }
 else{
     echo"<script>alert('No se pudo realizar la compra');window,history.go(-1);</script>";

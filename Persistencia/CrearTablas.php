@@ -33,12 +33,20 @@
     $resultado = mysqli_query($conexion, $sql);
         
     $sql = "CREATE TABLE IF NOT EXISTS pago (  
-        id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-        cantidad int unsigned NOT NULL,
-        idMercaderia bigint unsigned NOT NULL,
+        id bigint unsigned NOT NULL PRIMARY KEY,
         idCliente bigint unsigned NOT NULL,
-        FOREIGN KEY (idCliente) REFERENCES cliente(id),
-        FOREIGN KEY (idMercaderia) REFERENCES mercaderia(id)
+        FOREIGN KEY (idCliente) REFERENCES cliente(id)
+    );";
+    $resultado = mysqli_query($conexion, $sql);
+
+    $sql = "CREATE TABLE IF NOT EXISTS pagoMercaderia (  
+        id bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+        idPago bigint unsigned NOT NULL,
+        idMercaderia bigint unsigned NOT NULL,
+        cantidad int unsigned NOT NULL,
+        FOREIGN KEY (idMercaderia) REFERENCES mercaderia(id),
+        FOREIGN KEY (idPago) REFERENCES pago(id)
+
     );";
     $resultado = mysqli_query($conexion, $sql);
 
@@ -48,10 +56,8 @@
         fecha date NOT NULL,
         idCliente bigint unsigned NOT NULL,
         idPago bigint unsigned NOT NULL,
-        idMercaderia bigint unsigned NOT NULL,
         FOREIGN KEY (idCliente) REFERENCES cliente(id) ON DELETE CASCADE,
-        FOREIGN KEY (idPago) REFERENCES pago(id) ON DELETE CASCADE,
-        FOREIGN KEY (idMercaderia) REFERENCES mercaderia(id) ON DELETE CASCADE
+        FOREIGN KEY (idPago) REFERENCES pago(id) ON DELETE CASCADE
     );";
     $resultado = mysqli_query($conexion, $sql);
 
