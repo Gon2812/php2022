@@ -128,7 +128,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         mysqli_close($conexion);
         if($resultado && $resultadoImg){
-            echo "<script>alert('Se ha registrado la mercadería con éxito'); window.location='/ObligatorioPHP/Vista/MenuPrincipalAdmin.php'</script>";
+            echo "<script>alert('Se ha registrado la mercadería con éxito'); window.location='../Vista/MenuPrincipalAdmin.php'</script>";
         }
         else{
             echo"<script>alert('No se pudo registrar');window,history.go(-1);</script>";
