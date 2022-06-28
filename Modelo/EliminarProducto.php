@@ -1,12 +1,8 @@
 <?php
 include("../Persistencia/Conexion.php");
-echo "Esto es sólo una prueba... ";
-$id = $_POST['id'];
-echo "Hola que tal el id es: ";
-echo $id;
+$id = $_GET['id'];
 //actualizar los datos
-$eliminar = "DELETE FROM mercaderia INNER JOIN imgmercaderia ON mercaderia.id = imgmercaderia.idMercaderia
-                WHERE id='$id'";
+$eliminar = "DELETE FROM `mercaderia` WHERE id ='$id'";
 $resultado = mysqli_query($conexion, $eliminar);
 
 if($resultado){

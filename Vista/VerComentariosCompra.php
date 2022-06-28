@@ -8,9 +8,9 @@ $url_components = parse_url($url);
 parse_str($url_components['query'], $params);
       
 // id del producto en cuestion
-$id = $params['id'];
+$id = $params['idPago'];
 
-$comentariosProductos = "SELECT * FROM feedbackproducto WHERE idMercaderia = $id";
+$comentariosCompra = "SELECT * FROM feedbackcompra WHERE idPago = $id";
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ $comentariosProductos = "SELECT * FROM feedbackproducto WHERE idMercaderia = $id
 
         <tbody>
 
-        <?php $resultado2 = mysqli_query($conexion, $comentariosProductos);
+        <?php $resultado2 = mysqli_query($conexion, $comentariosCompra);
         while($row2=mysqli_fetch_assoc($resultado2)){ ?>
             <tr>
                 <th><?php echo $row2["id"];?></th>

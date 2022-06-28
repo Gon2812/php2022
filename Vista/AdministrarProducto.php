@@ -7,7 +7,7 @@ $mercaderia = "SELECT * FROM mercaderia";
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Eliminar un Producto</title>
+    <title>Administrar un Producto</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; }
@@ -17,7 +17,7 @@ $mercaderia = "SELECT * FROM mercaderia";
 </head>
 <body>
     <div class="container-table">
-        <div class="table__title">Datos de Curso</div>
+    <div class="table__title">Mercadería<a href="./AgregarProducto.php" class="title_edit">Agregar</a></div>
         <div class="table__header">Producto</div>
         <div class="table__header">Precio</div>
         <div class="table__header">Stock</div>

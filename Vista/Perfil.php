@@ -28,6 +28,18 @@ if(!isset($_SESSION["local"]) || $_SESSION["local"] !== true){
            
         </div>
     </nav>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th><a href="../Vista/MiHistorialDecompras.php" class="btn btn-dark ml-3 ">Historial de compras</a></th>
+            </tr>
+            <tr>
+                <th><a href="./MisComentarios.php" class="btn btn-dark ml-3 ">Mis comentarios</a></th>
+            </tr>
+        </tbody>
+    </table>
+        
+  
 
     <div class="container mt-5">
         <div class="row">

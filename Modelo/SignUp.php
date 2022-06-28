@@ -98,8 +98,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     echo count($aErrores);
     if( count($aErrores) == 1 )
     {
-        $insertar = "INSERT INTO cliente(id, nombre, tipo, correo, nombreUsuario, pass) 
-        VALUES('$id', '$name', '$type', '$mail', '$username', '$password')";
+        $insertar = "INSERT INTO cliente(id, nombre, tipo, correo, habilitado, nombreUsuario, pass) 
+        VALUES('$id', '$name', '$type', '$mail', '0', '$username', '$password')";
 
         $resultado = mysqli_query($conexion, $insertar);
         if($resultado){
