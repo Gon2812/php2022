@@ -27,11 +27,11 @@ if(!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true){
         </div>
     </nav>
 
-    <div class="dropdown">
-        <a href="./AgregarProducto.php">Agregar Producto</a>
-    </div>
     <div>
         <a href="./AdministrarProducto.php">Administrar Productos</a>
+    </div>
+    <div>
+        <a href="./AdministrarProducto.php">Administrar Usuarios</a>
     </div>
     <div>
         <a href="./VerCompras.php">Ver Compras</a>
