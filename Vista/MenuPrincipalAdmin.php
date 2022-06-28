@@ -33,6 +33,9 @@ if(!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true){
     <div>
         <a href="./AdministrarProducto.php">Administrar Productos</a>
     </div>
+    <div>
+        <a href="./VerCompras.php">Ver Compras</a>
+    </div>
     <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Bienvenido a este sitio para administradores.</h1>
 
 </body>

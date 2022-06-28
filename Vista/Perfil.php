@@ -31,7 +31,7 @@ if(!isset($_SESSION["local"]) || $_SESSION["local"] !== true){
     <table class="table">
         <tbody>
             <tr>
-                <th><a href="../Modelo/LogOut.php" class="btn btn-dark ml-3 ">Historial de compras</a></th>
+                <th><a href="../Vista/MiHistorialDecompras.php" class="btn btn-dark ml-3 ">Historial de compras</a></th>
             </tr>
             <tr>
                 <th><a href="./MisComentarios.php" class="btn btn-dark ml-3 ">Mis comentarios</a></th>

@@ -29,7 +29,7 @@ $comentariosProductosUsuario = "SELECT * FROM feedbackproducto WHERE idCliente =
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Producto</th>
+                <th scope="col">Id Compra</th>
                 <th scope="col">Comentario</th>
                 <th scope="col">Fecha</th>
             </tr>
@@ -41,9 +41,8 @@ $comentariosProductosUsuario = "SELECT * FROM feedbackproducto WHERE idCliente =
         <?php $resultado = mysqli_query($conexion, $reseñasComprasUsuario);
 
         while($row=mysqli_fetch_assoc($resultado)){ ?>
-            <?php $idProductoReseña = (int)$row["idMercaderia"];?>
             <tr>
-                <th><?php echo mysqli_fetch_assoc(mysqli_query($conexion, "SELECT * FROM mercaderia WHERE id = $idProductoReseña"))["nombre"];?></th>
+                <th><?php echo $row["idPago"];?></th>
                 <th><?php echo $row["comentario"];?></th>
                 <th><?php echo $row["fecha"];?></th>
             </tr>
