@@ -48,8 +48,9 @@
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Agregar">
                 <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+                <input type="button" value="Volver" class="btn btn-secondary ml-2" onClick="history.go(-1);">
             </div>
         </form>
-    </div>    
+    </div>
 </body>
 </html>
