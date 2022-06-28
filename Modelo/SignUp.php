@@ -103,7 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         $resultado = mysqli_query($conexion, $insertar);
         if($resultado){
-            echo "<script>alert('Se ha registrado el usuario con éxito'); window.location='/ObligatorioPHP/Vista/IniciarSesion.php'</script>";
+            echo "<script>alert('Se ha registrado el usuario con éxito'); window.location='../Vista/IniciarSesion.php'</script>";
         }
         else{
             echo"<script>alert('No se pudo registrar');window,history.go(-1);</script>";

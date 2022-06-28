@@ -35,10 +35,10 @@ if(!isset($_SESSION["admin"]) || $_SESSION["admin"] !== true){
                 <a href="./AdministrarProducto.php" class="btn btn-lg btn-dark">Administrar Productos</a>
             </div>
             <div class="col-12">
-                <a href="./AdministrarUsuario.php" class="btn btn-lg btn-dark">Administrar Usuarios</a>
+                <a href="./AdministrarUsuario.php" class="btn btn-lg btn-dark mt-3">Administrar Usuarios</a>
             </div>
             <div class="col-12">
-            <a href="./VerCompras.php" class="btn btn-lg btn-dark">Ver Compras</a>
+            <a href="./VerCompras.php" class="btn btn-lg btn-dark mt-3">Ver Compras</a>
             </div>
         </div>
     </div>

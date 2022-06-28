@@ -43,7 +43,7 @@ $mercaderia = "SELECT * FROM mercaderia";
 
                             <input type="submit" class="btn btn-primary" value="Agregar a carrito">
                         </form>
-                        <div>
+                        <div class="mt-3">
                             <form action="../Vista/Comentar.php" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="id" value="<?php echo $fila["id"]; ?>">
                                 <input type="text" name="comentario">
