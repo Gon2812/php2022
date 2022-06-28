@@ -17,7 +17,7 @@ $mercaderia = "SELECT * FROM mercaderia";
 </head>
 <body>
     <div class="container-table">
-        <div class="table__title">Datos de Producto<a href="./AgregarProducto.php" class="title_edit">Agregar</a></div>
+    <div class="table__title">Mercadería<a href="./AgregarProducto.php" class="title_edit">Agregar</a></div>
         <div class="table__header">Producto</div>
         <div class="table__header">Precio</div>
         <div class="table__header">Stock</div>
