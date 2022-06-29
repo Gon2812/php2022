@@ -137,7 +137,7 @@ body{
 }
 
 .container-table--edit2{
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
 
     width: 95%;
     min-width: 900px;
@@ -146,5 +146,5 @@ body{
 }
 .table__title--edit2{
     grid-column-start: 1;
-    grid-column-end:5;
+    grid-column-end:2;
 }
