@@ -30,20 +30,22 @@ $usuario = "SELECT * FROM cliente";
             <div class="table__item"><?php echo $row["tipo"];?></div>
             <div class="table__item"><?php echo $row["correo"];?></div>
             <div class="table__item"><?php echo $row["nombreUsuario"];?></div>
+            <div class="table__item">
             <?php
                 if($row["habilitado"] == true)
                 {
                     ?>
-                        <a href="../Modelo/HabilitarUsuario.php?id=<?php echo $row["id"];?>" class="table__item__link">Deshabilitar</a>
+                        <a class="text-center" href="../Modelo/HabilitarUsuario.php?id=<?php echo $row["id"];?>" class="table__item__link">Deshabilitar</a>
                     <?php
                 }
                 else
                 {
                     ?>
-                        <a href="../Modelo/HabilitarUsuario.php?id=<?php echo $row["id"];?>" class="table__item__link">Habilitar</a>
+                        <a class="text-center" href="../Modelo/HabilitarUsuario.php?id=<?php echo $row["id"];?>" class="table__item__link">Habilitar</a>
                     <?php
                 }
                 ?>
+            </div>
         <?php 
     } mysqli_free_result($resultado)?>
     </div>
